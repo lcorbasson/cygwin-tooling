@@ -11,6 +11,7 @@ cygdatetime() {
   dt="$1"
   DATEF="$2"
   TIMEF="$3"
+  # Common date formats should be OK, see https://support.microsoft.com/en-us/kb/241671
   [ -z "$DATEF" ] && DATEF="$(reg query 'HKCU\Control Panel\International' /v sShortDate | sed -ne '/sShortDate/{s|.* \([^ ]*\)$|\1|;p}')"
   [ -z "$TIMEF" ] && TIMEF="$(reg query 'HKCU\Control Panel\International' /v sTimeFormat | sed -ne '/sTimeFormat/{s|.* \([^ ]*\)$|\1|;p}')"
   d="${dt% *}"
