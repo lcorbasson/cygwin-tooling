@@ -1,0 +1,2 @@
+#!/bin/bash
+autoreconf && ./configure --prefix="$HOME" && make && make install && make clean && make distclean
