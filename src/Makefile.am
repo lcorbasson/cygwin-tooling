@@ -1,3 +1,12 @@
-bin_PROGRAMS = cleantmp sudo
-cleantmp_SOURCES = cleantmp.bash
-sudo_SOURCES = sudo.bash
+# vim: noexpandtab filetype=make
+
+bin_SCRIPTS = cleantmp sudo
+
+cleantmp: cleantmp.bash
+	cp $< $@
+	chmod +x $@
+
+sudo: sudo.bash
+	cp $< $@
+	chmod +x $@
+
