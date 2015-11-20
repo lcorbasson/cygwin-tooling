@@ -2,6 +2,7 @@
 
 Copyright (C) 1994-1996, 1999-2002, 2004-2013 Free Software Foundation,
 Inc.
+Reformatted by Loïc CORBASSON, 2015.
 
    Copying and distribution of this file, with or without modification,
 are permitted in any medium without royalty provided the copyright
