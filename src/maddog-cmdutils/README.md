@@ -1,7 +1,9 @@
 # CmdUtils 
 
 *(c) 1998-2000 Matt Ginzton, MaDdoG Software*
+
 *collection release 1.5: 5/28/2000*
+
 *Web site: http://www.maddogsw.com/*
 
 ## Description
@@ -9,7 +11,7 @@
 A collection of a few free utilities to make life at the Win9x/NT
 command line a bit easier and more flexible.  Source code included.
 
-`CmdUtils` currently include:
+_CmdUtils_ currently include:
 - `Recycle`, a safe replacement for the `del` command, that sends files to the
   recycle bin instead of deleting them.  Recycle is also more flexible than
   `del`; you can specify multiple files at once (or use wildcards), and you
@@ -100,13 +102,13 @@ will replace the `del` command with `recycle`.
 
 ## Terms and conditions:
 
-As of version 1.5, `CmdUtils` are released copyleft under the terms of the GNU
+As of version 1.5, _CmdUtils_ are released copyleft under the terms of the GNU
 General Public License (GPL) which you can find enclosed as [`gpl.txt`](gpl.txt).
 
-Although `CmdUtils` are free, if you find them useful, I'd appreciate a note at
+Although _CmdUtils_ are free, if you find them useful, I'd appreciate a note at
 [magi@cs.stanford.edu](mailto:magi@cs.stanford.edu) telling me what you think.
 
-A short overview of the terms of the GPL follows; see [`gpl.txt`](gpl.txt) for more details.
+A short overview of the terms of the GPL follows; see [GPL.txt](GPL.txt) for more details.
 
 ```
     CmdUtils: a collection of command-line tool interfaces to the Win95 shell
@@ -128,5 +130,5 @@ A short overview of the terms of the GPL follows; see [`gpl.txt`](gpl.txt) for m
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ```
 
-Visit http://www.maddogsw.com/ for updates to the programs included in CmdUtils,
+Visit http://www.maddogsw.com/ for updates to the programs included in *CmdUtils*,
 as well as my other software -- try it out!
