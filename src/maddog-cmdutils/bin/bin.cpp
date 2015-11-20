@@ -31,6 +31,7 @@
  */
 
 
+#include <iostream>
 #include <windows.h>
 #include <shlobj.h>
 #include <stdio.h>
@@ -40,9 +41,9 @@
 
 void ShowHelp (char* pszCmd);
 bool EmptyBin (char* pszRoot, bool bSilent, bool bForce);
-bool CalcBinSize (char* pszRoot);
+bool CalcBinSize (char * pszRoot);
 char* FillSizeBuffer (char* pszBuf, __int64 nBytes, bool bLong);
-
+char* _ui64toa(__int64 value, char *str, int radix);
 
 int main (int argc, char** argv)
 {
@@ -124,7 +125,7 @@ bool EmptyBin (char* pszRoot, bool bSilent, bool bForce)
 }
 
 
-bool CalcBinSize (char* pszRoot)
+bool CalcBinSize (char * pszRoot)
 {
 	SHQUERYRBINFO rbi;
 	rbi.cbSize = sizeof (rbi);
@@ -136,10 +137,9 @@ bool CalcBinSize (char* pszRoot)
 
 	if (pszRoot == NULL)
 		pszRoot = "for all drives";
-	printf ("Statistics for recycle bin %s:\n"
-			"Items:\t\t%I64d\n"
-			"Space occupied:\t%s\n",
-		pszRoot, rbi.i64NumItems, szSize);
+	printf ("Statistics for recycle bin %s:\n", pszRoot);
+        std::cout << "Items:\t\t" << rbi.i64NumItems << std::endl;
+        printf ("Space occupied:\t%s\n", szSize);
 
 	return true;
 }
@@ -211,3 +211,69 @@ char* FillSizeBuffer (char* pszBuf, __int64 nBytes, bool bLong)
 
 	return pszBuf;
 }
+
+
+/*
+ * NTDLL string functions
+ *
+ * Copyright 2000 Alexandre Julliard
+ * Copyright 2000 Jon Griffiths
+ * Copyright 2003 Thomas Mertes
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+
+/*********************************************************************
+ *      _ui64toa   (NTDLL.@)
+ *
+ * Converts a large unsigned integer to a string.
+ *
+ * RETURNS
+ *  str.
+ *
+ * NOTES
+ *  - Converts value to a '\0' terminated string which is copied to str.
+ *  - The maximum length of the copied str is 65 bytes.
+ *  - Does not check if radix is in the range of 2 to 36.
+ *  - If str is NULL it crashes, as the native function does.
+ */
+char * _ui64toa(
+    __int64 value, /* [I] Value to be converted */
+    char *str,       /* [O] Destination for the converted value */
+    int radix)       /* [I] Number base for conversion */
+{
+    char buffer[65];
+    char *pos;
+    int digit;
+
+    pos = &buffer[64];
+    *pos = '\0';
+
+    do {
+	digit = value % radix;
+	value = value / radix;
+	if (digit < 10) {
+	    *--pos = '0' + digit;
+	} else {
+	    *--pos = 'a' + digit - 10;
+	} /* if */
+    } while (value != 0L);
+
+    memcpy(str, pos, &buffer[64] - pos + 1);
+    return str;
+}
+
+
