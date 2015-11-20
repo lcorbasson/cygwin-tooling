@@ -1,0 +1,3 @@
+[submodule "src/externals/trash-cli"]
+	path = src/externals/trash-cli
+	url = https://github.com/andreafrancia/trash-cli.git
