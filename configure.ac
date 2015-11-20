@@ -1,6 +1,6 @@
 AC_PREREQ(2.60)
 AC_INIT([cygwin-tooling], [0.1], [loic@corbasson.fr])
-AM_INIT_AUTOMAKE([-Wall -Werror])
+AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 AC_PROG_CC
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([
